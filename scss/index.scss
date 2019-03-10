@@ -37,3 +37,25 @@
 p + p {
     margin-top: .50em;
 }
+
+:root > body > main {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+
+    > nav {
+        position: sticky;
+        top: 0;
+    }
+
+    > section {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+
+        > aside {
+            min-width: 300px;
+            // TODO: make resposive
+        }
+    }
+}
