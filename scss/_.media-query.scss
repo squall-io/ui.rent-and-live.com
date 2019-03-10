@@ -1,0 +1,38 @@
+$--sizes: (
+    tn:    0px,
+    xs:  360px,
+    sm:  640px,
+    md: 1024px,
+    lg: 1366px,
+    xl: 1920px,
+    hg: 2560px,
+);
+
+@mixin mq( $from: null, $till: null ) {
+    @if null == $till or $from == $till {
+        @if not map-has-key($--sizes, $from) {
+            @error '$from: need valid size target';
+        }
+
+        @media ( min-width: #{map-get($--sizes, $from)}) {
+            @content;
+        }
+    }
+    @else if not map-has-key($--sizes, $from) {
+        @error '$from: need valid size target';
+    }
+    @else if not map-has-key($--sizes, $till) {
+        @error '$till: need valid size target';
+    }
+    @else {
+        @if comparable($from, $till) and $till < $from {
+            $_ill: $till;
+            $till: $from;
+            $from: $_ill;
+        }
+
+        @media ( min-width: #{map-get($--sizes, $from)}) and ( max-width: #{map-get($--sizes, $till)}) {
+            @content;
+        }
+    }
+}
