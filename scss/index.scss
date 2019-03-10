@@ -44,6 +44,7 @@ p + p {
     flex-direction: column;
 
     > nav {
+        position: -webkit-sticky;
         position: sticky;
         top: 0;
     }
